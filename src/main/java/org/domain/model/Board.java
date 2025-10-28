@@ -1,13 +1,16 @@
 package org.domain.model;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.domain.enums.Phases;
-
 import javax.json.Json;
 import javax.json.JsonArrayBuilder;
 import javax.json.JsonObject;
 import javax.json.JsonObjectBuilder;
 import java.util.ArrayList;
 
+@Getter
+@Setter
 public class Board implements Model {
 
     private final PlayerList players;
@@ -18,8 +21,6 @@ public class Board implements Model {
     private Phases phase;
     private int playedPlayersCount;
     private final Chat chat;
-
-
     private final GameMap gameMap;
 
     public Board()
@@ -39,64 +40,25 @@ public class Board implements Model {
     {
         players.add(new Player(playerName));
     }
-    public PlayerList getPlayers()
+    public ArrayList<Builder> getBuidlerReveal()
     {
-        return players;
-    }
-    public Player getWinner()
-    {
-        return winner;
-    }
-    public void setWinner(Player winner) {
-        this.winner = winner;
-    }
-    public ArrayList<Build> getBuilds() {
-        return builds;
-    }
-    public ArrayList<Builder> getBuilders() {
-        return builders;
-    }
-    public ArrayList<Builder> getBuidlerReveal(){
         ArrayList<Builder> res = new ArrayList<>();
         for (int i = 0; i <deckNumber; i++) {
             res.add(builders.getFirst());
         }
         return res;
     }
-
-    public ArrayList<Build> getBuildReveal(){
+    public ArrayList<Build> getBuildReveal()
+    {
         ArrayList<Build> res = new ArrayList<>();
         for (int i = 0; i <deckNumber; i++) {
             res.add(builds.getFirst());
         }
         return res;
     }
-    public Phases getPhase() {
-        return phase;
-    }
-    public void setPhase(Phases phase) {
-        this.phase = phase;
-    }
-    public void setPlayedPlayersCount(int playedPlayersCount) {
-        this.playedPlayersCount = playedPlayersCount;
-    }
-
-    public int getPlayedPlayersCount() {
-        return playedPlayersCount;
-    }
-
-    public GameMap getGameMap() {
-        return gameMap;
-    }
-    public Chat getChat() {
-        return chat;
-    }
-    public int getDeckNumber() {
-        return deckNumber;
-    }
-
     @Override
-    public JsonObject toJson() {
+    public JsonObject toJson()
+    {
         JsonArrayBuilder buildsArray = Json.createArrayBuilder();
         for (Build build : builds) {
             buildsArray.add(build.toJson());

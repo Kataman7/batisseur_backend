@@ -1,9 +1,13 @@
 package org.domain.model;
 
+import lombok.Getter;
+import lombok.Setter;
 import javax.json.*;
 import java.util.ArrayList;
 import java.util.Objects;
 
+@Getter
+@Setter
 public class Player implements Model
 {
     private final String name;
@@ -20,56 +24,31 @@ public class Player implements Model
         builders = new ArrayList<>();
         money = 0;
     }
-    public String getName()
-    {
-        return name;
-    }
-    public int getScore()
-    {
-        return score;
-    }
-    public void setScore(int score)
-    {
-        this.score = score;
-    }
-    //compare uniquement le nom lors des égalités
     @Override
     public boolean equals(Object o)
     {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Player player = (Player) o;
-        return Objects.equals(name, player.name);
+        return Objects.equals(name, player.name);  //compare uniquement le nom lors des égalités
     }
     @Override
     public int hashCode()
     {
         return Objects.hash(name);
     }
-
-    public ArrayList<Build> getBuilds() {
-        return builds;
-    }
-    public Build getBuildByName(String name) {
-        for (Build build : builds) {
+    public Build getBuildByName(String name)
+    {
+        for (Build build : builds)
+        {
             if (build.getName().equals(name)) {
                 return build;
             }
         }
         return null;
     }
-    public ArrayList<Builder> getBuilders() {
-        return builders;
-    }
-    public int getMoney() {
-        return money;
-    }
-
-    public void setMoney(int money) {
-        this.money = money;
-    }
-
-    public Builder getBuilderByName(String name) {
+    public Builder getBuilderByName(String name)
+    {
         for (Builder builder : builders) {
             if (builder.getName().equals(name)) {
                 return builder;
@@ -77,9 +56,9 @@ public class Player implements Model
         }
         return null;
     }
-
     @Override
-    public JsonObject toJson() {
+    public JsonObject toJson()
+    {
         JsonArrayBuilder buildsArray = Json.createArrayBuilder();
         for (Build build : builds) {
             buildsArray.add(build.toJson());

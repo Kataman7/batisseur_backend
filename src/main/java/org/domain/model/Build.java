@@ -2,7 +2,11 @@ package org.domain.model;
 
 import javax.json.Json;
 import javax.json.JsonObject;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 public class Build implements Model {
     private final String name;
     private int reward;
@@ -20,37 +24,11 @@ public class Build implements Model {
         this.sizeY = sizeY;
         this.isreplaceable = isreplaceable;
     }
-    public String getName() {
-        return name;
-    }
-    public int getReward() {
-        return reward;
-    }
+
     public int clearReward() {
         int r = reward;
         reward = 0;
         return r;
-    }
-    public Ressources getRessources() {
-        return ressources;
-    }
-    public int getSizeX() {
-        return sizeX;
-    }
-    public int getSizeY() {
-        return sizeY;
-    }
-    public boolean isReplaceable() {
-        return isreplaceable;
-    }
-    public boolean isBuilt() {
-        return ressources.isEmpty();
-    }
-    public boolean isInfected() {
-        return isInfected;
-    }
-    public void setInfected(boolean infected) {
-        isInfected = infected;
     }
 
     @Override

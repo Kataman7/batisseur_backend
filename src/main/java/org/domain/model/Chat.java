@@ -1,25 +1,27 @@
 package org.domain.model;
 
+import lombok.Getter;
 import javax.json.Json;
 import javax.json.JsonArrayBuilder;
 import javax.json.JsonObject;
 import java.util.ArrayList;
 
-public class Chat implements Model {
-    private ArrayList<Message> messages;
+@Getter
+public class Chat implements Model
+{
+    private final ArrayList<Message> messages;
 
-    public Chat() {
+    public Chat()
+    {
         this.messages = new ArrayList<Message>();
     }
-    public ArrayList<Message> getMessages() {
-        return messages;
-    }
-    public void addMessage(Message message) {
+    public void addMessage(Message message)
+    {
         this.messages.add(message);
     }
-
     @Override
-    public JsonObject toJson() {
+    public JsonObject toJson()
+    {
         JsonArrayBuilder messagesArray = Json.createArrayBuilder();
         for (Message msg : messages) {
             messagesArray.add(msg.toJson());

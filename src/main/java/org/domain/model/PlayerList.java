@@ -1,13 +1,12 @@
 package org.domain.model;
 
 import org.utils.CircularList;
-
 import javax.json.Json;
 import javax.json.JsonArrayBuilder;
 import javax.json.JsonObject;
 
-public class PlayerList extends CircularList<Player> implements Model {
-
+public class PlayerList extends CircularList<Player> implements Model
+{
     public Player getByName(String name)
     {
         return super.items.stream()
@@ -15,7 +14,6 @@ public class PlayerList extends CircularList<Player> implements Model {
                 .findFirst()
                 .orElse(null);
     }
-
     @Override
     public JsonObject toJson() {
         JsonArrayBuilder playersArray = Json.createArrayBuilder();

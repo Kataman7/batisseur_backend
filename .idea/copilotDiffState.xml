@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CopilotDiffPersistence">
+    <option name="pendingDiffs">
+      <map>
+        <entry key="$PROJECT_DIR$/src/main/java/org/domain/enums/ErrorCodes.java">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/src/main/java/org/domain/enums/ErrorCodes.java" />
+              <option name="originalContent" value="package org.domain.enums;&#10;&#10;public enum ErrorCodes&#10;{&#10;    GAME_EMPTY,&#10;    GAME_FULL,&#10;    PLAYER_TURN,&#10;    VALID_PLAYER,&#10;    INVALID_EVENT,&#10;    PLAYER_HAS_ENOUGHT_MONEY&#10;}&#10;" />
+              <option name="updatedContent" value="package org.domain.enums;&#13;&#10;&#13;&#10;public enum ErrorCodes&#10;{&#10;    GAME_EMPTY,&#10;    GAME_FULL,&#10;    PLAYER_TURN,&#10;    VALID_PLAYER,&#10;    INVALID_EVENT,&#10;    PLAYER_HAS_ENOUGHT_MONEY&#10;}&#13;&#10;" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/org/domain/enums/Phases.java">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/src/main/java/org/domain/enums/Phases.java" />
+              <option name="originalContent" value="package org.domain.enums;&#10;&#10;public enum Phases {&#10;    LOBBY,&#10;    BUY_BUILDERS,&#10;    BUY_BUILDS,&#10;    BUILD&#10;}&#10;" />
+              <option name="updatedContent" value="package org.domain.enums;&#13;&#10;&#13;&#10;public enum Phases {&#10;    LOBBY,&#10;    BUY_BUILDERS,&#10;    BUY_BUILDS,&#10;    BUILD&#10;}&#13;&#10;" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

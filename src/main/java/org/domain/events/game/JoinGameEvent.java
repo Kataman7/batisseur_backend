@@ -23,13 +23,11 @@ public class JoinGameEvent extends PlayerEvent
                 new NotRule(new ValidPlayerRule(getPlayerName()))
         ));
     }
-
     @Override
     public void apply(Board board)
     {
         board.getPlayers().add(new Player(getPlayerName()));
     }
-
     @Override
     public JsonObject toJson() {
         return Json.createObjectBuilder()

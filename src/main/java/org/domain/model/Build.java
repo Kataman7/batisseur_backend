@@ -13,7 +13,7 @@ public class Build implements Model {
     private final Ressources ressources;
     private final int sizeX;
     private final int sizeY;
-    private final boolean isreplaceable;
+    private final boolean replaceable;
     private boolean isInfected = false;
 
     public Build(String name, int coast, int[] ressources, int sizeX, int sizeY, boolean isreplaceable) {
@@ -22,7 +22,7 @@ public class Build implements Model {
         this.ressources = new Ressources(ressources);
         this.sizeX = sizeX;
         this.sizeY = sizeY;
-        this.isreplaceable = isreplaceable;
+        this.replaceable = isreplaceable;
     }
 
     public int clearReward() {
@@ -39,7 +39,7 @@ public class Build implements Model {
                 .add("ressources", ressources.toJson())
                 .add("sizeX", sizeX)
                 .add("sizeY", sizeY)
-                .add("isreplaceable", isreplaceable)
+                .add("isreplaceable", replaceable)
                 .add("isInfected", isInfected)
                 .build();
     }

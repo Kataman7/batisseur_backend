@@ -6,14 +6,16 @@ import org.adapters.out.saver.ConsoleGameSaver;
 import org.application.port.out.GameStateBroadcaster;
 import org.application.port.out.GameStateSaver;
 import org.application.service.GameService;
+import org.domain.events.game.JoinGameEvent;
 import org.domain.model.Board;
+import org.domain.model.Player;
 
 public class Main {
     public static void main(String[] args) {
         // Création du modèle de jeu
         Board game = new Board();
-        game.addPlayer("Alice");
-        game.addPlayer("Bob");
+        (new JoinGameEvent("Alice")).apply(game);
+        (new JoinGameEvent("Bob")).apply(game);
 
         // Adaptateurs sortants
         GameStateSaver saver = new ConsoleGameSaver();         // Affiche l'état après chaque action

@@ -4,5 +4,5 @@ public enum Phases {
     LOBBY,
     BUY_BUILDERS,
     BUY_BUILDS,
-    BUILD,
+    BUILD
 }

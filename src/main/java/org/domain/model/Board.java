@@ -36,23 +36,20 @@ public class Board implements Model {
         gameMap = new GameMap(40, 40);
         deckNumber = 4;
     }
-    public void addPlayer(String playerName)
-    {
-        players.add(new Player(playerName));
-    }
-    public ArrayList<Builder> getBuidlerReveal()
+
+    public ArrayList<Builder> getBuidlerDeck()
     {
         ArrayList<Builder> res = new ArrayList<>();
-        for (int i = 0; i <deckNumber; i++) {
-            res.add(builders.getFirst());
+        for (int i = 0; i < deckNumber; i++) {
+            res.add(builders.get(i));
         }
         return res;
     }
-    public ArrayList<Build> getBuildReveal()
+    public ArrayList<Build> getBuildDeck()
     {
         ArrayList<Build> res = new ArrayList<>();
-        for (int i = 0; i <deckNumber; i++) {
-            res.add(builds.getFirst());
+        for (int i = 0; i < deckNumber; i++) {
+            res.add(builds.get(i));
         }
         return res;
     }

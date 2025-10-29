@@ -30,7 +30,7 @@ public class BuyBuilderEvent extends PlayerEvent {
     @Override
     public void apply(Board board) {
         var player = board.getPlayers().getByName(getPlayerName());
-        Builder build = board.getBuidlerReveal().get(builderIndex);
+        Builder build = board.getBuidlerDeck().get(builderIndex);
         player.setMoney(player.getMoney() - build.getCost());
         player.getBuilders().add(build);
         board.setPlayedPlayersCount(board.getPlayedPlayersCount() + 1);

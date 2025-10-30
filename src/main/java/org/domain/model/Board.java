@@ -22,6 +22,7 @@ public class Board implements Model {
     private int playedPlayersCount;
     private final Chat chat;
     private final GameMap gameMap;
+    private String adminPlayerName;
 
     public Board()
     {

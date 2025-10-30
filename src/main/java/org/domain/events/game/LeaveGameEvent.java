@@ -24,6 +24,10 @@ public class LeaveGameEvent extends PlayerEvent
     public void apply(Board board)
     {
         board.getPlayers().remove(new Player(super.getPlayerName()));
+
+        if (getPlayerName().equals(board.getAdminPlayerName()) && !board.getPlayers().isEmpty()) {
+            board.setAdminPlayerName(board.getPlayers().getCurrent().getName());
+        }
     }
 
     @Override

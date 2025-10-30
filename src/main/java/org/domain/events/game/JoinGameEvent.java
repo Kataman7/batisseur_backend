@@ -27,6 +27,11 @@ public class JoinGameEvent extends PlayerEvent
     public void apply(Board board)
     {
         board.getPlayers().add(new Player(getPlayerName()));
+
+        if (board.getPlayers().size() == 1)
+        {
+            board.setAdminPlayerName(getPlayerName());
+        }
     }
     @Override
     public JsonObject toJson() {

@@ -10,14 +10,12 @@ import java.util.ArrayList;
 public class Chat implements Model
 {
     private final ArrayList<Message> messages;
+    public static final int MAX_MESSAGES = 15;
+    public static final int MAX_MESSAGE_LENGTH = 100;
 
     public Chat()
     {
         this.messages = new ArrayList<Message>();
-    }
-    public void addMessage(Message message)
-    {
-        this.messages.add(message);
     }
     @Override
     public JsonObject toJson()

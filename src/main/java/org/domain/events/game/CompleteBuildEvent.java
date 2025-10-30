@@ -31,13 +31,13 @@ public class CompleteBuildEvent extends PlayerEvent
         Player player = board.getPlayers().getByName(super.getPlayerName());
         Build build = player.getBuilds().get(buildIndex);
 
-        player.setMoney(player.getMoney() + build.clearReward());
+        player.setMoney(player.getMoney() + build.getReward());
+        build.setReward(0);
         player.getBuilders().forEach(builder -> {
             if (builder.getAssignedBuild() != null && builder.getAssignedBuild().equals(build)) {
                 builder.setAssignedBuild(null);
             }
         });
-
     }
 
     @Override

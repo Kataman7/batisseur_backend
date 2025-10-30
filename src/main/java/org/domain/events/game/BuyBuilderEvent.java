@@ -13,7 +13,7 @@ public class BuyBuilderEvent extends PlayerEvent {
     private final int builderIndex;
     private final int cost;
 
-    public BuyBuilderEvent(String playerName, int builderIndex,int cost) {
+    public BuyBuilderEvent(String playerName,int builderIndex, int cost) {
         super(playerName);
         this.builderIndex = builderIndex;
         this.cost = cost;
@@ -30,7 +30,7 @@ public class BuyBuilderEvent extends PlayerEvent {
     @Override
     public void apply(Board board) {
         var player = board.getPlayers().getByName(getPlayerName());
-        Builder build = board.getBuidlerDeck().get(builderIndex);
+        Builder build = board.getBuidlerDeck().remove(builderIndex);
         player.setMoney(player.getMoney() - build.getCost());
         player.getBuilders().add(build);
         board.setPlayedPlayersCount(board.getPlayedPlayersCount() + 1);

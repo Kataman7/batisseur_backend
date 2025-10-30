@@ -7,7 +7,7 @@ public class GameNotFullRule implements GameRule
 {
     @Override
     public boolean isApplicable(Board board) {
-        return board.getPlayers().size() <= 16;
+        return board.getPlayers().size() <= 8;
     }
 
     @Override

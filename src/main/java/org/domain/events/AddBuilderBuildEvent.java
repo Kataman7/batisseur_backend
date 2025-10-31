@@ -1,4 +1,4 @@
-package org.domain.events.game;
+package org.domain.events;
 
 import org.domain.enums.Phases;
 import org.domain.model.Board;
@@ -12,6 +12,8 @@ import javax.json.JsonObject;
 import java.util.List;
 
 public class AddBuilderBuildEvent extends PlayerEvent{
+
+    public static final String NAME = "AddBuilderBuildEvent";
 
     private final int buildIndex;
     private final int builderIndex;
@@ -27,8 +29,6 @@ public class AddBuilderBuildEvent extends PlayerEvent{
                 new ValidPlayerBuildIndexRule(getPlayerName(), buildIndex),
                 new ValidPlayerBuilderIndexRule(getPlayerName(), builderIndex)));
     }
-
-
     @Override
     public void apply(Board board) {
         Player player = board.getPlayers().getByName(getPlayerName());
@@ -39,12 +39,11 @@ public class AddBuilderBuildEvent extends PlayerEvent{
         if (builder.isInfected()) builder.setInfected(true);
         builder.setAssignedBuild(build);
     }
-
     @Override
     public JsonObject toJson() {
         return Json.createObjectBuilder()
                 .add("content", "event")
-                .add("event", "addBuilderBuild")
+                .add("event", NAME)
                 .add("player", getPlayerName())
                 .add("buildIndex", buildIndex)
                 .add("builderIndex", builderIndex)

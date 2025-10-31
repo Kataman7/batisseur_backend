@@ -3,11 +3,11 @@ package org.adapters.in;
 
 import org.adapters.out.broadcaster.WebSocketBroadcaster;
 import org.application.port.in.GameCommandHandler;
-import org.domain.events.game.AddMessageEvent;
-import org.domain.events.game.GameEvent;
-import org.domain.events.game.JoinGameEvent;
-import org.domain.events.game.LeaveGameEvent;
-import org.domain.events.server.CreateServerEvent;
+import org.domain.events.AddMessageEvent;
+import org.domain.events.GameEvent;
+import org.domain.events.JoinGameEvent;
+import org.domain.events.LeaveGameEvent;
+import org.domain.events.CreateServerEvent;
 import org.java_websocket.WebSocket;
 import org.java_websocket.handshake.ClientHandshake;
 import org.java_websocket.server.WebSocketServer;
@@ -82,26 +82,26 @@ public class WebSocketGameAdapter extends WebSocketServer {
             return null;
         }
 
-        switch (eventType.toLowerCase()) {
+        switch (eventType) {
             //{"event": "addMessage", "playerName": "Alice", "messageContent": "Hello everyone!"}
-            case "addmessage": {
+            case AddMessageEvent.NAME: {
                 String playerName = jsonObject.getString("playerName", "");
                 String messageContent = jsonObject.getString("messageContent", "");
                 return new AddMessageEvent(playerName, messageContent);
             }
-            case "join": {
+            case JoinGameEvent.NAME: {
                 String playerName = jsonObject.getString("playerName", "");
                 // Ajoute d'autres paramètres optionnels ici si besoin
                 connectedPlayers.put(conn, playerName);
                 return new JoinGameEvent(playerName);
             }
-            case "leave": {
+            case LeaveGameEvent.NAME: {
                 String playerName = jsonObject.getString("playerName", "");
                 // Ajoute d'autres paramètres optionnels ici si besoin
                 connectedPlayers.remove(conn);
                 return new LeaveGameEvent(playerName);
             }
-            case "createserver": {
+            case CreateServerEvent.NAME: {
                 // Paramètres optionnels pour createServer si besoin
                 return new CreateServerEvent();
             }

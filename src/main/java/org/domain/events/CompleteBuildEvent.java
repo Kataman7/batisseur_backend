@@ -1,4 +1,4 @@
-package org.domain.events.game;
+package org.domain.events;
 
 import org.domain.enums.Phases;
 import org.domain.model.Board;
@@ -12,6 +12,8 @@ import java.util.List;
 
 public class CompleteBuildEvent extends PlayerEvent
 {
+    public static final String NAME = "CompleteBuildEvent";
+
     private final int buildIndex;
 
     public CompleteBuildEvent(String playerName, int buildIndex) {
@@ -25,9 +27,9 @@ public class CompleteBuildEvent extends PlayerEvent
                 new BuildRessourcesIsEmptyRule(playerName, buildIndex)
         ));
     }
-
     @Override
-    public void apply(Board board) {
+    public void apply(Board board)
+    {
         Player player = board.getPlayers().getByName(super.getPlayerName());
         Build build = player.getBuilds().get(buildIndex);
 
@@ -39,12 +41,12 @@ public class CompleteBuildEvent extends PlayerEvent
             }
         });
     }
-
     @Override
-    public JsonObject toJson() {
+    public JsonObject toJson()
+    {
         return Json.createObjectBuilder()
                 .add("content", "event")
-                .add("event", "completeBuild")
+                .add("event", NAME)
                 .add("player", getPlayerName())
                 .add("buildIndex", buildIndex)
                 .build();

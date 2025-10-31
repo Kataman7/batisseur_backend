@@ -1,6 +1,6 @@
 package rules;
 
-import org.domain.events.game.JoinGameEvent;
+import org.domain.events.JoinGameEvent;
 import org.domain.model.Board;
 import org.domain.rules.ValidPlayerRule;
 import org.junit.jupiter.api.BeforeEach;

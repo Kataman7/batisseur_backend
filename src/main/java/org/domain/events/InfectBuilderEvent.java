@@ -1,4 +1,4 @@
-package org.domain.events.game;
+package org.domain.events;
 
 import org.domain.enums.Phases;
 import org.domain.model.Board;
@@ -12,9 +12,12 @@ import java.util.List;
 
 public class InfectBuilderEvent extends PlayerEvent
 {
+    public static final String NAME = "InfectBuilderEvent";
+
     private final int builderIndex;
 
-    public InfectBuilderEvent(String playerName, int builderIndex, int cost) {
+    public InfectBuilderEvent(String playerName, int builderIndex, int cost)
+    {
         super(playerName);
         this.builderIndex = builderIndex;
 
@@ -26,20 +29,20 @@ public class InfectBuilderEvent extends PlayerEvent
                 new PlayerHaveEnoughtMoneyRule(playerName, cost)
         ));
     }
-
     @Override
-    public void apply(Board board) {
+    public void apply(Board board)
+    {
         Builder builder = board.getBuilders().get(builderIndex);
         Player player = board.getPlayers().getByName(getPlayerName());
         player.setMoney(player.getMoney() - builder.getCost());
         builder.setInfected(true);
     }
-
     @Override
-    public JsonObject toJson() {
+    public JsonObject toJson()
+    {
         return Json.createObjectBuilder()
                 .add("content", "event")
-                .add("event", "infectBuilder")
+                .add("event", NAME)
                 .add("player", getPlayerName())
                 .add("builderIndex", builderIndex)
                 .build();

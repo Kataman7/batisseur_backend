@@ -6,9 +6,8 @@ import org.adapters.out.saver.ConsoleGameSaver;
 import org.application.port.out.GameStateBroadcaster;
 import org.application.port.out.GameStateSaver;
 import org.application.service.GameService;
-import org.domain.events.game.JoinGameEvent;
+import org.domain.events.JoinGameEvent;
 import org.domain.model.Board;
-import org.domain.model.Player;
 
 public class Main {
     public static void main(String[] args) {

@@ -1,48 +1,52 @@
-package org.domain.events.game;
+package org.domain.events;
 
 import org.domain.enums.Phases;
 import org.domain.model.Board;
-import org.domain.model.Build;
+import org.domain.model.Builder;
 import org.domain.rules.*;
 
 import javax.json.Json;
 import javax.json.JsonObject;
 import java.util.List;
 
-public class BuyBuildEvent extends PlayerEvent{
-    private final int buildIndex;
+public class BuyBuilderEvent extends PlayerEvent
+{
+    public static final String NAME = "BuyBuilderEvent";
+
+    private final int builderIndex;
     private final int cost;
 
-    public BuyBuildEvent(String playerName, int buildIndex, int cost) {
+    public BuyBuilderEvent(String playerName,int builderIndex, int cost)
+    {
         super(playerName);
-        this.buildIndex = buildIndex;
+        this.builderIndex = builderIndex;
         this.cost = cost;
 
         super.getRules().addAll(List.of(
-                new ValidGamePhaseRule(Phases.BUY_BUILDS),
-                new ValidDeckBuildIndexRule(buildIndex),
+                new ValidGamePhaseRule(Phases.BUY_BUILDERS),
+                new ValidDeckBuilderIndexRule(builderIndex),
                 new ValidPlayerRule(getPlayerName()),
                 new PlayerTurnRule(getPlayerName()),
                 new PlayerHaveEnoughtMoneyRule(getPlayerName(), cost)
         ));
     }
-
     @Override
-    public void apply(Board board) {
+    public void apply(Board board)
+    {
         var player = board.getPlayers().getByName(getPlayerName());
-        Build build = board.getBuildDeck().remove(buildIndex);
+        Builder build = board.getBuidlerDeck().remove(builderIndex);
         player.setMoney(player.getMoney() - build.getCost());
-        player.getBuilds().add(build);
+        player.getBuilders().add(build);
         board.setPlayedPlayersCount(board.getPlayedPlayersCount() + 1);
     }
-
     @Override
-    public JsonObject toJson() {
+    public JsonObject toJson()
+    {
         return Json.createObjectBuilder()
                 .add("content", "event")
-                .add("event", "buyBuild")
+                .add("event", NAME)
                 .add("player", getPlayerName())
-                .add("buildIndex", buildIndex)
+                .add("value", builderIndex)
                 .add("cost", cost)
                 .build();
     }

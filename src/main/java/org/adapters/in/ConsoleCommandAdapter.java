@@ -1,7 +1,7 @@
 package org.adapters.in;
 
 import org.application.port.in.GameCommandHandler;
-import org.domain.events.game.GameEvent;
+import org.domain.events.GameEvent;
 
 import java.util.Scanner;
 

@@ -1,4 +1,4 @@
-package org.domain.events.game;
+package org.domain.events;
 
 import org.domain.enums.Phases;
 import org.domain.model.Board;
@@ -14,6 +14,8 @@ import java.util.List;
 
 public class JoinGameEvent extends PlayerEvent
 {
+    public static final String NAME = "JoinGameEvent";
+
     public JoinGameEvent(String playerName)
     {
         super(playerName);
@@ -34,10 +36,11 @@ public class JoinGameEvent extends PlayerEvent
         }
     }
     @Override
-    public JsonObject toJson() {
+    public JsonObject toJson()
+    {
         return Json.createObjectBuilder()
                 .add("content", "event")
-                .add("event", "join")
+                .add("event", NAME)
                 .add("player", getPlayerName())
                 .build();
     }

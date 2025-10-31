@@ -1,4 +1,4 @@
-package org.domain.events.game;
+package org.domain.events;
 
 import org.domain.model.Board;
 import org.domain.model.Player;
@@ -10,6 +10,8 @@ import java.util.List;
 
 public class LeaveGameEvent extends PlayerEvent
 {
+    public static final String NAME = "LeaveGameEvent";
+
     public LeaveGameEvent(String playerName)
     {
         super(playerName);
@@ -19,7 +21,6 @@ public class LeaveGameEvent extends PlayerEvent
         ));
 
     }
-
     @Override
     public void apply(Board board)
     {
@@ -29,12 +30,12 @@ public class LeaveGameEvent extends PlayerEvent
             board.setAdminPlayerName(board.getPlayers().getCurrent().getName());
         }
     }
-
     @Override
-    public JsonObject toJson() {
+    public JsonObject toJson()
+    {
         return Json.createObjectBuilder()
                 .add("content", "event")
-                .add("event", "leave")
+                .add("event", NAME)
                 .add("player", getPlayerName())
                 .build();
     }

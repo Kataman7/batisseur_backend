@@ -1,4 +1,4 @@
-package org.domain.events.game;
+package org.domain.events;
 
 import org.domain.model.Board;
 import org.domain.model.Chat;
@@ -12,6 +12,8 @@ import java.util.List;
 
 public class AddMessageEvent extends PlayerEvent
 {
+    public static final String NAME = "AddMessageEvent";
+
     private final Message message;
 
     public AddMessageEvent(String playerName, String messageContent)
@@ -37,7 +39,7 @@ public class AddMessageEvent extends PlayerEvent
     public JsonObject toJson() {
         return Json.createObjectBuilder()
                 .add("content", "event")
-                .add("event", "addMessage")
+                .add("event", NAME)
                 .add("message", message.toJson())
                 .build();
     }

@@ -1,4 +1,4 @@
-package org.domain.events.game;
+package org.domain.events;
 
 import org.domain.enums.Phases;
 import org.domain.model.Board;
@@ -12,11 +12,14 @@ import javax.json.JsonObject;
 import java.util.List;
 
 public class PlaceBuildEvent extends PlayerEvent {
+    public static final String NAME = "PlaceBuildEvent";
+
     private final int buildIndex;
     private final int x;
     private final int y;
 
-    public PlaceBuildEvent(String playerName, int buildIndex, int x, int y, int sizeX, int sizeY) {
+    public PlaceBuildEvent(String playerName, int buildIndex, int x, int y, int sizeX, int sizeY)
+    {
         super(playerName);
         this.buildIndex = buildIndex;
         this.x = x;
@@ -29,9 +32,9 @@ public class PlaceBuildEvent extends PlayerEvent {
                 new ValidMapPositionRule(x, y, sizeX, sizeY)
         ));
     }
-
     @Override
-    public void apply(Board board) {
+    public void apply(Board board)
+    {
         Player player = board.getPlayers().getByName(getPlayerName());
         GameMap gameMap = board.getGameMap();
         Build build = player.getBuilds().get(buildIndex);
@@ -45,12 +48,12 @@ public class PlaceBuildEvent extends PlayerEvent {
             }
         }
     }
-
     @Override
-    public JsonObject toJson() {
+    public JsonObject toJson()
+    {
         return Json.createObjectBuilder()
                 .add("content", "event")
-                .add("event", "placeBuild")
+                .add("event", NAME)
                 .add("player", getPlayerName())
                 .add("buildIndex", buildIndex)
                 .add("x", x)

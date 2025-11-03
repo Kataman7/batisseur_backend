@@ -11,7 +11,7 @@ public class Build implements Model {
     private final String name;
     private int reward;
     private int cost;
-    private final Ressources ressources;
+    private final Resources resources;
     private final int sizeX;
     private final int sizeY;
     private final boolean replaceable;
@@ -21,7 +21,7 @@ public class Build implements Model {
         this.name = name;
         this.reward = reward;
         this.cost = cost;
-        this.ressources = new Ressources(ressources);
+        this.resources = new Resources(ressources);
         this.sizeX = sizeX;
         this.sizeY = sizeY;
         this.replaceable = isreplaceable;
@@ -32,7 +32,7 @@ public class Build implements Model {
         return Json.createObjectBuilder()
                 .add("name", name)
                 .add("reward", reward)
-                .add("ressources", ressources.toJson())
+                .add("ressources", resources.toJson())
                 .add("sizeX", sizeX)
                 .add("sizeY", sizeY)
                 .add("isreplaceable", replaceable)

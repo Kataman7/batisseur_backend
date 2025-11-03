@@ -5,8 +5,8 @@ import org.adapters.out.broadcaster.WebSocketBroadcaster;
 import org.adapters.out.saver.InMemoryGameSaver;
 import org.application.port.in.GameCommandHandler;
 import org.application.port.out.GameStateSaver;
-import org.domain.events.GameEvent;
-import org.domain.events.CreateServerEvent;
+import org.domain.event.GameEvent;
+import org.domain.event.CreateServerEvent;
 import org.domain.model.Board;
 
 import java.io.IOException;

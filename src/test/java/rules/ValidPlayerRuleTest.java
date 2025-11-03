@@ -1,8 +1,8 @@
 package rules;
 
-import org.domain.events.JoinGameEvent;
+import org.domain.event.JoinBoardEvent;
 import org.domain.model.Board;
-import org.domain.rules.ValidPlayerRule;
+import org.domain.rule.ValidPlayerRule;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -16,7 +16,7 @@ public class ValidPlayerRuleTest
     public void setUp()
     {
         board = new Board();
-        (new JoinGameEvent("Player1")).apply(board);
+        (new JoinBoardEvent("Player1")).apply(board);
     }
     @Test
     public void shouldReturnTrueWhenPlayerExists()

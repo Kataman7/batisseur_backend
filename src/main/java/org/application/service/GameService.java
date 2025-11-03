@@ -3,7 +3,7 @@ package org.application.service;
 import org.application.port.in.GameCommandHandler;
 import org.application.port.out.GameStateBroadcaster;
 import org.application.port.out.GameStateSaver;
-import org.domain.events.GameEvent;
+import org.domain.event.GameEvent;
 import org.domain.model.Board;
 
 public class GameService implements GameCommandHandler {

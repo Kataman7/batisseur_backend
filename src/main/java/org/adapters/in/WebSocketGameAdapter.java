@@ -3,11 +3,11 @@ package org.adapters.in;
 
 import org.adapters.out.broadcaster.WebSocketBroadcaster;
 import org.application.port.in.GameCommandHandler;
-import org.domain.events.AddMessageEvent;
-import org.domain.events.GameEvent;
-import org.domain.events.JoinGameEvent;
-import org.domain.events.LeaveGameEvent;
-import org.domain.events.CreateServerEvent;
+import org.domain.event.AddMessageEvent;
+import org.domain.event.GameEvent;
+import org.domain.event.JoinBoardEvent;
+import org.domain.event.LeaveBoardEvent;
+import org.domain.event.CreateServerEvent;
 import org.java_websocket.WebSocket;
 import org.java_websocket.handshake.ClientHandshake;
 import org.java_websocket.server.WebSocketServer;
@@ -38,7 +38,7 @@ public class WebSocketGameAdapter extends WebSocketServer {
         String playerName = connectedPlayers.remove(conn);
         broadcaster.removeConnection(conn);
         if (playerName != null) {
-            handler.handle(new LeaveGameEvent(playerName));
+            handler.handle(new LeaveBoardEvent(playerName));
         }
     }
 
@@ -89,17 +89,17 @@ public class WebSocketGameAdapter extends WebSocketServer {
                 String messageContent = jsonObject.getString("messageContent", "");
                 return new AddMessageEvent(playerName, messageContent);
             }
-            case JoinGameEvent.NAME: {
+            case JoinBoardEvent.NAME: {
                 String playerName = jsonObject.getString("playerName", "");
                 // Ajoute d'autres paramètres optionnels ici si besoin
                 connectedPlayers.put(conn, playerName);
-                return new JoinGameEvent(playerName);
+                return new JoinBoardEvent(playerName);
             }
-            case LeaveGameEvent.NAME: {
+            case LeaveBoardEvent.NAME: {
                 String playerName = jsonObject.getString("playerName", "");
                 // Ajoute d'autres paramètres optionnels ici si besoin
                 connectedPlayers.remove(conn);
-                return new LeaveGameEvent(playerName);
+                return new LeaveBoardEvent(playerName);
             }
             case CreateServerEvent.NAME: {
                 // Paramètres optionnels pour createServer si besoin

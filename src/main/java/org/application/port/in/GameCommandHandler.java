@@ -1,6 +1,6 @@
 package org.application.port.in;
 
-import org.domain.events.GameEvent;
+import org.domain.event.GameEvent;
 
 public interface GameCommandHandler {
     void handle(GameEvent event);

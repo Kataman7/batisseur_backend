@@ -11,7 +11,7 @@ public class Builder implements Model
 {
     private String name;
     private int cost;
-    private final Ressources ressources;
+    private final Resources resources;
     private Build assignedBuild = null;
     private boolean isInfected = false;
 
@@ -19,7 +19,7 @@ public class Builder implements Model
     {
         this.name = name;
         this.cost = cost;
-        this.ressources = new Ressources(ressources);
+        this.resources = new Resources(ressources);
     }
 
     @Override
@@ -28,7 +28,7 @@ public class Builder implements Model
         JsonObject json = Json.createObjectBuilder()
                 .add("name", name)
                 .add("cost", cost)
-                .add("ressources", ressources.toJson())
+                .add("ressources", resources.toJson())
                 .build();
         if (assignedBuild != null) {
             json = Json.createObjectBuilder(json)

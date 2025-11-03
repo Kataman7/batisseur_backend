@@ -1,7 +1,7 @@
 package rules;
 
 import org.domain.model.Board;
-import org.domain.rules.ValidBuildersDataRule;
+import org.domain.rule.ValidBuildersDataRule;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertFalse;

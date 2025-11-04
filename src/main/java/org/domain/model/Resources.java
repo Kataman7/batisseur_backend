@@ -14,10 +14,10 @@ public class Resources implements Model
 
     public Resources(int[] ressources)
     {
-        this.res1 = ressources[0];
-        this.res2 = ressources[1];
-        this.res3 = ressources[2];
-        this.res4 = ressources[3];
+        this.res1 = ressources.length > 0 ? ressources[0] : 0;
+        this.res2 = ressources.length > 1 ? ressources[1] : 0;
+        this.res3 = ressources.length > 2 ? ressources[2] : 0;
+        this.res4 = ressources.length > 3 ? ressources[3] : 0;
     }
     public boolean isEmpty()
     {

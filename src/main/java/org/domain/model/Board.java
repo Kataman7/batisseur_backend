@@ -34,11 +34,10 @@ public class Board implements Model {
         gameMap = new GameMap(40, 40);
         deckNumber = 4;
     }
-
     public ArrayList<Builder> getBuidlerDeck()
     {
         ArrayList<Builder> res = new ArrayList<>();
-        for (int i = 0; i < deckNumber; i++) {
+        for (int i = 0; i < Math.min(deckNumber, builders.size()); i++) {
             res.add(builders.get(i));
         }
         return res;
@@ -46,7 +45,7 @@ public class Board implements Model {
     public ArrayList<Build> getBuildDeck()
     {
         ArrayList<Build> res = new ArrayList<>();
-        for (int i = 0; i < deckNumber; i++) {
+        for (int i = 0; i < Math.min(deckNumber, builds.size()); i++) {
             res.add(builds.get(i));
         }
         return res;

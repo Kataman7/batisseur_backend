@@ -32,7 +32,7 @@ public class AssignBuilderToBuildEvent extends PlayerEvent{
     @Override
     public void apply(Board board) {
         Player player = board.getPlayers().getByName(getPlayerName());
-        Build build = board.getBuilds().get(buildIndex);
+        Build build = player.getBuilds().get(buildIndex);
         Builder builder = player.getBuilders().get(builderIndex);
 
         build.getResources().remove(builder.getResources());

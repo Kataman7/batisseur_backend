@@ -2,6 +2,7 @@ package org.domain.model;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.domain.enums.Phases;
 import javax.json.*;
 import java.util.ArrayList;
 import java.util.Objects;
@@ -15,6 +16,7 @@ public class Player implements Model
     private ArrayList<Build> builds;
     private ArrayList<Builder> builders;
     private int money;
+    private Phases playedPhase;
 
     public Player(String name)
     {

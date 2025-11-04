@@ -35,8 +35,10 @@ public class CompleteBuildEvent extends PlayerEvent
 
         player.setMoney(player.getMoney() + build.getReward());
         build.setReward(0);
-        player.getBuilders().forEach(builder -> {
-            if (builder.getAssignedBuild() != null && builder.getAssignedBuild().equals(build)) {
+        player.getBuilders().forEach(builder ->
+        {
+            if (build.equals(builder.getAssignedBuild()))
+            {
                 builder.setAssignedBuild(null);
             }
         });

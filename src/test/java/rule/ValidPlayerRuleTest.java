@@ -1,4 +1,4 @@
-package rules;
+package rule;
 
 import org.domain.event.JoinBoardEvent;
 import org.domain.model.Board;

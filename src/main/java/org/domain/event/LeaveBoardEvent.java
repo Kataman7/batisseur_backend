@@ -10,7 +10,7 @@ import java.util.List;
 
 public class LeaveBoardEvent extends PlayerEvent
 {
-    public static final String NAME = "LeaveGameEvent";
+    public static final String NAME = "LeaveBoardEvent";
 
     public LeaveBoardEvent(String playerName)
     {
@@ -26,7 +26,8 @@ public class LeaveBoardEvent extends PlayerEvent
     {
         board.getPlayers().remove(new Player(super.getPlayerName()));
 
-        if (getPlayerName().equals(board.getAdminPlayerName()) && !board.getPlayers().isEmpty()) {
+        if (getPlayerName().equals(board.getAdminPlayerName()) && !board.getPlayers().isEmpty())
+        {
             board.setAdminPlayerName(board.getPlayers().getCurrent().getName());
         }
     }

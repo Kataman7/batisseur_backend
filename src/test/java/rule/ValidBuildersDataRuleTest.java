@@ -1,4 +1,4 @@
-package rules;
+package rule;
 
 import org.domain.model.Board;
 import org.domain.rule.ValidBuildersDataRule;

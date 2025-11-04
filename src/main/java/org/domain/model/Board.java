@@ -19,7 +19,6 @@ public class Board implements Model {
     private final ArrayList<Builder> builders;
     private final int deckNumber;
     private Phases phase;
-    private int playedPlayersCount;
     private final Chat chat;
     private final GameMap gameMap;
     private String adminPlayerName;
@@ -32,8 +31,6 @@ public class Board implements Model {
         builders = new ArrayList<>();
         phase = Phases.LOBBY;
         chat = new Chat();
-
-        playedPlayersCount = 0;
         gameMap = new GameMap(40, 40);
         deckNumber = 4;
     }
@@ -72,7 +69,6 @@ public class Board implements Model {
                 .add("builders", buildersArray)
                 .add("deckNumber", deckNumber)
                 .add("phase", phase.name())
-                .add("playedPlayersCount", playedPlayersCount)
                 .add("chat", chat.toJson())
                 .add("gameMap", gameMap.toJson());
         if (winner != null) {

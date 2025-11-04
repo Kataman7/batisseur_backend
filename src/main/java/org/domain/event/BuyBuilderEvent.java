@@ -37,7 +37,6 @@ public class BuyBuilderEvent extends PlayerEvent
         Builder build = board.getBuidlerDeck().remove(builderIndex);
         player.setMoney(player.getMoney() - build.getCost());
         player.getBuilders().add(build);
-        board.setPlayedPlayersCount(board.getPlayedPlayersCount() + 1);
     }
     @Override
     public JsonObject toJson()

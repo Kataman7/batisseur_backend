@@ -13,7 +13,7 @@ import java.util.List;
 
 public class AssignBuilderToBuildEvent extends PlayerEvent{
 
-    public static final String NAME = "AddBuilderBuildEvent";
+    public static final String NAME = "AssignBuilderToBuildEvent";
 
     private final int buildIndex;
     private final int builderIndex;

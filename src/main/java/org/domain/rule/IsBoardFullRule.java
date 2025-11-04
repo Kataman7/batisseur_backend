@@ -3,7 +3,7 @@ package org.domain.rule;
 import org.domain.enums.ErrorCodes;
 import org.domain.model.Board;
 
-public class IsGameFullRule implements GameRule
+public class IsBoardFullRule implements GameRule
 {
     @Override
     public boolean isApplicable(Board board) {

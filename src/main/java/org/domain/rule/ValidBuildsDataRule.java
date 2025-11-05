@@ -10,43 +10,59 @@ public class ValidBuildsDataRule implements GameRule
     {
         this.buildsData = buildsData;
     }
+
     @Override
     public boolean isApplicable(Board board)
     {
-        if (buildsData == null || buildsData.length == 0)
-        {
-            return false;
-        }
+        if (isBuildsDataNullOrEmpty()) return false;
         for (String[] buildData : buildsData)
         {
-            if (buildData == null || buildData.length < 9)
-            {
-                return false;
-            }
-            if (buildData[0].isEmpty() || !buildData[0].toLowerCase().equals(buildData[0])) //name
-            {
-                return false;
-            }
-            try
-            {
-                if (Integer.parseInt(buildData[1]) == 0 || Integer.parseInt(buildData[2]) == 0) // size x and y
-                {
-                    return false;
-                }
-                Integer.parseInt(buildData[3]); // cost
-                Integer.parseInt(buildData[4]); // reward
-                Integer.parseInt(buildData[5]); // ressource1
-                Integer.parseInt(buildData[6]); // ressource2
-                Integer.parseInt(buildData[7]); // ressource3
-                Integer.parseInt(buildData[8]); // ressource4
-            }
-            catch (NumberFormatException e)
-            {
-                return false;
-            }
+            if (!isBuildDataValid(buildData)) return false;
         }
         return true;
     }
+
+    private boolean isBuildsDataNullOrEmpty() {
+        return buildsData == null || buildsData.length == 0;
+    }
+
+    private boolean isBuildDataValid(String[] buildData) {
+        return isBuildDataNotNullAndComplete(buildData)
+                && isBuildNameValid(buildData[0])
+                && isBuildNumbersValid(buildData);
+    }
+
+    private boolean isBuildDataNotNullAndComplete(String[] buildData) {
+        return buildData != null && buildData.length >= 9;
+    }
+
+    private boolean isBuildNameValid(String name) {
+        return !name.isEmpty() && name.equals(name.toLowerCase());
+    }
+
+    private boolean isBuildNumbersValid(String[] buildData) {
+        try {
+            return isSizeValid(buildData[1], buildData[2])
+                    && isInteger(buildData[3]) // cost
+                    && isInteger(buildData[4]) // reward
+                    && isInteger(buildData[5]) // ressource1
+                    && isInteger(buildData[6]) // ressource2
+                    && isInteger(buildData[7]) // ressource3
+                    && isInteger(buildData[8]); // ressource4
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
+    private boolean isSizeValid(String sizeX, String sizeY) {
+        return Integer.parseInt(sizeX) != 0 && Integer.parseInt(sizeY) != 0;
+    }
+
+    private boolean isInteger(String value) {
+        Integer.parseInt(value);
+        return true;
+    }
+
     @Override
     public int getCode()
     {

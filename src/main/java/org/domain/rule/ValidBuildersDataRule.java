@@ -6,42 +6,59 @@ public class ValidBuildersDataRule implements GameRule
 {
     private final String[][] buildersData;
 
-    public ValidBuildersDataRule(String[][] buildersData) {
+    public ValidBuildersDataRule(String[][] buildersData)
+    {
         this.buildersData = buildersData;
     }
 
     @Override
-    public boolean isApplicable(Board board) {
-        if (buildersData == null || buildersData.length == 0)
-        {
-            return false;
-        }
+    public boolean isApplicable(Board board)
+    {
+        if (isBuildersDataNullOrEmpty()) return false;
         for (String[] builderData : buildersData)
         {
-            if (builderData == null || builderData.length < 6)
-            {
-                return false;
-            }
-            if (builderData[0].isEmpty() || !builderData[0].toLowerCase().equals(builderData[0])) //name
-            {
-                return false;
-            }
-            try
-            {
-                if (Integer.parseInt(builderData[1]) < 0) // cost
-                {
-                    return false;
-                }
-                Integer.parseInt(builderData[2]); // ressource1
-                Integer.parseInt(builderData[3]); // ressource2
-                Integer.parseInt(builderData[4]); // ressource3
-                Integer.parseInt(builderData[5]); // ressource4
-            }
-            catch (NumberFormatException e)
-            {
-                return false;
-            }
+            if (!isBuilderDataValid(builderData)) return false;
         }
+        return true;
+    }
+
+    private boolean isBuildersDataNullOrEmpty()
+    {
+        return buildersData == null || buildersData.length == 0;
+    }
+
+    private boolean isBuilderDataValid(String[] builderData) {
+        return isBuilderDataNotNullAndComplete(builderData)
+                && isBuilderNameValid(builderData[0])
+                && isBuilderNumbersValid(builderData);
+    }
+
+    private boolean isBuilderDataNotNullAndComplete(String[] builderData) {
+        return builderData != null && builderData.length >= 6;
+    }
+
+    private boolean isBuilderNameValid(String name) {
+        return !name.isEmpty() && name.equals(name.toLowerCase());
+    }
+
+    private boolean isBuilderNumbersValid(String[] builderData) {
+        try {
+            return isCostValid(builderData[1])
+                    && isInteger(builderData[2])
+                    && isInteger(builderData[3])
+                    && isInteger(builderData[4])
+                    && isInteger(builderData[5]);
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
+    private boolean isCostValid(String cost) {
+        return Integer.parseInt(cost) >= 0;
+    }
+
+    private boolean isInteger(String value) {
+        Integer.parseInt(value);
         return true;
     }
 

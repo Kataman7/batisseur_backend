@@ -16,7 +16,7 @@ public class IsPlayerRichEnoughRuleTest
     public void setUp()
     {
         board = new Board();
-        new JoinBoardEvent("Player1").apply(board);
+        new JoinBoardEvent("Player1", "token1").apply(board);
         board.getPlayers().getByName("Player1").setMoney(10);
     }
 

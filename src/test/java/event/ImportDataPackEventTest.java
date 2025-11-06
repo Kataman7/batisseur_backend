@@ -15,7 +15,7 @@ public class ImportDataPackEventTest
     public void setUp()
     {
         board = new Board();
-        new JoinBoardEvent("Player1").apply(board);
+        new JoinBoardEvent("Player1", "token1").apply(board);
     }
 
     @Test
@@ -29,7 +29,7 @@ public class ImportDataPackEventTest
                 {"ouvrier", "1", "2", "3", "4", "5"},
                 {"apprenti", "0", "1", "2", "3", "4"}
         };
-        new ImportDataPackEvent("Player1", buildsData, buildersData).apply(board);
+        new ImportDataPackEvent("Player1", "token1", buildsData, buildersData).apply(board);
         assertEquals(2, board.getBuilds().size());
         assertEquals(2, board.getBuilders().size());
     }

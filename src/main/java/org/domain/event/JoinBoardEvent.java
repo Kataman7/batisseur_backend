@@ -6,7 +6,6 @@ import org.domain.model.Player;
 import org.domain.rule.IsBoardFullRule;
 import org.domain.rule.NotRule;
 import org.domain.rule.ValidGamePhaseRule;
-import org.domain.rule.ValidPlayerRule;
 
 import javax.json.Json;
 import javax.json.JsonObject;
@@ -16,18 +15,18 @@ public class JoinBoardEvent extends PlayerEvent
 {
     public static final String NAME = "JoinBoardEvent";
 
-    public JoinBoardEvent(String playerName)
+    public JoinBoardEvent(String playerName, String playerToken)
     {
-        super(playerName);
+        super(playerName, playerToken);
         super.getRules().addAll(List.of(
                 new ValidGamePhaseRule(Phases.LOBBY),
-                new NotRule(new IsBoardFullRule()),
-                new NotRule(new ValidPlayerRule(getPlayerName()))
+                new NotRule(new IsBoardFullRule())
         ));
     }
     @Override
     public void apply(Board board)
     {
+        Player newPlayer = new Player(getPlayerName());
         board.getPlayers().add(new Player(getPlayerName()));
 
         if (board.getPlayers().size() == 1)

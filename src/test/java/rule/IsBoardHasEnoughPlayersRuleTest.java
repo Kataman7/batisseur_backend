@@ -16,9 +16,9 @@ public class IsBoardHasEnoughPlayersRuleTest
     public void setUp()
     {
         board = new Board();
-        new JoinBoardEvent("Player1").apply(board);
-        new JoinBoardEvent("Player2").apply(board);
-        new JoinBoardEvent("Player3").apply(board);
+        new JoinBoardEvent("Player1", "token1").apply(board);
+        new JoinBoardEvent("Player2", "token2").apply(board);
+        new JoinBoardEvent("Player3", "token3").apply(board);
     }
 
     @Test

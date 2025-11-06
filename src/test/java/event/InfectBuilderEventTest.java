@@ -18,9 +18,9 @@ public class InfectBuilderEventTest
     public void setUp()
     {
         board = new Board();
-        new JoinBoardEvent("Player1").apply(board);
+        new JoinBoardEvent("Player1", "token1").apply(board);
         board.getBuilders().add(new Builder("ouvrier", 1, new int[]{2, 3, 4, 5}));
-        new StartGameEvent("Player1").apply(board);
+        new StartGameEvent("Player1", "token1").apply(board);
         board.getPlayers().getByName("Player1").setMoney(10);
     }
 
@@ -29,7 +29,7 @@ public class InfectBuilderEventTest
     {
         int initialMoney = board.getPlayers().getByName("Player1").getMoney();
         int cost = board.getBuilders().get(0).getCost();
-        new InfectBuilderEvent("Player1", 0, cost).apply(board);
+        new InfectBuilderEvent("Player1", "token1", 0, cost).apply(board);
         assertTrue(board.getBuilders().get(0).isInfected());
         assertEquals(initialMoney - cost, board.getPlayers().getByName("Player1").getMoney());
     }

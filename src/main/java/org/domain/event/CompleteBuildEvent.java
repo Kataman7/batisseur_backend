@@ -16,12 +16,11 @@ public class CompleteBuildEvent extends PlayerEvent
 
     private final int buildIndex;
 
-    public CompleteBuildEvent(String playerName, int buildIndex) {
-        super(playerName);
+    public CompleteBuildEvent(String playerName, String playerToken, int buildIndex) {
+        super(playerName, playerToken);
         this.buildIndex = buildIndex;
 
         super.getRules().addAll(List.of(
-                new ValidPlayerRule(playerName),
                 new ValidGamePhaseRule(Phases.BUILD),
                 new ValidPlayerBuildIndexRule(playerName, buildIndex),
                 new IsBuildResourcesEmptyRule(playerName, buildIndex)

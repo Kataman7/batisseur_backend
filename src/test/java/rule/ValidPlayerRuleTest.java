@@ -16,7 +16,7 @@ public class ValidPlayerRuleTest
     public void setUp()
     {
         board = new Board();
-        (new JoinBoardEvent("Player1")).apply(board);
+        (new JoinBoardEvent("Player1", "token1")).apply(board);
     }
     @Test
     public void shouldReturnTrueWhenPlayerExists()

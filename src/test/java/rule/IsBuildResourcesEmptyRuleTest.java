@@ -18,7 +18,7 @@ public class IsBuildResourcesEmptyRuleTest
     public void setUp()
     {
         board = new Board();
-        new JoinBoardEvent("Player1").apply(board);
+        new JoinBoardEvent("Player1", "token1").apply(board);
         Player player = board.getPlayers().getByName("Player1");
         player.getBuilds().add(new Build("maison", 10, 20, new int[]{}, 1, 1, true));
         player.getBuilds().add(new Build("chateau", 30, 40, new int[]{1, 2, 3}, 2, 2, false));

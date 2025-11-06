@@ -12,14 +12,9 @@ public class LeaveBoardEvent extends PlayerEvent
 {
     public static final String NAME = "LeaveBoardEvent";
 
-    public LeaveBoardEvent(String playerName)
+    public LeaveBoardEvent(String playerName, String playerToken)
     {
-        super(playerName);
-
-        super.getRules().addAll(List.of(
-                new ValidPlayerRule(getPlayerName())
-        ));
-
+        super(playerName, playerToken);
     }
     @Override
     public void apply(Board board)

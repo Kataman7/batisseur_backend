@@ -18,7 +18,7 @@ public class ValidPlayerBuilderIndexRuleTest
     public void setUp()
     {
         board = new Board();
-        new JoinBoardEvent("Player1").apply(board);
+        new JoinBoardEvent("Player1", "token1").apply(board);
         Player player = board.getPlayers().getByName("Player1");
         player.getBuilders().add(new Builder("ouvrier1", 1, new int[]{1}));
         player.getBuilders().add(new Builder("ouvrier2", 1, new int[]{1}));

@@ -18,13 +18,13 @@ public class StartGameEventTest
     public void setUp()
     {
         board = new Board();
-        (new JoinBoardEvent("bob")).apply(board);
-        (new JoinBoardEvent("alice")).apply(board);
+        (new JoinBoardEvent("bob", "token1")).apply(board);
+        (new JoinBoardEvent("alice", "token2")).apply(board);
     }
     @Test
     public void shouldSetPhaseToBuyBuildersWhenPlayerIsAdmin()
     {
-        (new StartGameEvent("bob")).apply(board);
+        (new StartGameEvent("bob", "token1")).apply(board);
         assertEquals(Phases.BUY_BUILDERS, board.getPhase());
     }
 }

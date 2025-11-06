@@ -17,6 +17,7 @@ public class Player implements Model
     private ArrayList<Builder> builders;
     private int money;
     private Phases playedPhase;
+    private String secretToken;
 
     public Player(String name)
     {
@@ -25,6 +26,7 @@ public class Player implements Model
         builds = new ArrayList<>();
         builders = new ArrayList<>();
         money = 0;
+        this.secretToken = java.util.UUID.randomUUID().toString().replace("-", "");;
     }
     @Override
     public boolean equals(Object o)

@@ -15,14 +15,13 @@ public class StartGameEvent extends PlayerEvent
 {
     public static final String NAME = "StartGameEvent";
 
-    public StartGameEvent(String playerName)
+    public StartGameEvent(String playerName, String playerToken)
     {
-        super(playerName);
+        super(playerName, playerToken);
 
         this.getRules().addAll(
                 List.of(
                         new ValidGamePhaseRule(Phases.LOBBY),
-                        new ValidPlayerRule(playerName),
                         new IsPlayerAdminRule(playerName),
                         new IsBoardHasEnoughPlayersRule(2)
                 )

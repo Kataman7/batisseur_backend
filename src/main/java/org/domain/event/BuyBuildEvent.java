@@ -16,16 +16,15 @@ public class BuyBuildEvent extends PlayerEvent
     private final int buildIndex;
     private final int cost;
 
-    public BuyBuildEvent(String playerName, int buildIndex, int cost)
+    public BuyBuildEvent(String playerName, String playerToken, int buildIndex, int cost)
     {
-        super(playerName);
+        super(playerName, playerToken);
         this.buildIndex = buildIndex;
         this.cost = cost;
 
         super.getRules().addAll(List.of(
                 new ValidGamePhaseRule(Phases.BUY_BUILDS),
                 new ValidDeckBuildIndexRule(buildIndex),
-                new ValidPlayerRule(getPlayerName()),
                 new IsPlayerTurnRule(getPlayerName()),
                 new IsPlayerRichEnoughRule(getPlayerName(), cost)
         ));

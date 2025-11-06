@@ -27,15 +27,15 @@ public class IsBoardEmptyRuleTest
     @Test
     public void shouldReturnTrueWhenBoardHasOnePlayer()
     {
-        new JoinBoardEvent("Player1").apply(board);
+        new JoinBoardEvent("Player1", "token1").apply(board);
         assertTrue(new IsBoardEmptyRule().isApplicable(board));
     }
 
     @Test
     public void shouldReturnFalseWhenBoardHasTwoPlayers()
     {
-        new JoinBoardEvent("Player1").apply(board);
-        new JoinBoardEvent("Player2").apply(board);
+        new JoinBoardEvent("Player1", "token1").apply(board);
+        new JoinBoardEvent("Player2", "token2").apply(board);
         assertFalse(new IsBoardEmptyRule().isApplicable(board));
     }
 }

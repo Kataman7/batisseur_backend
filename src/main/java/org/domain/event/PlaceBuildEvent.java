@@ -18,16 +18,15 @@ public class PlaceBuildEvent extends PlayerEvent {
     private final int x;
     private final int y;
 
-    public PlaceBuildEvent(String playerName, int buildIndex, int x, int y, int sizeX, int sizeY)
+    public PlaceBuildEvent(String playerName, String playerToken, int buildIndex, int x, int y, int sizeX, int sizeY)
     {
-        super(playerName);
+        super(playerName, playerToken);
         this.buildIndex = buildIndex;
         this.x = x;
         this.y = y;
 
         super.getRules().addAll(List.of(
                 new ValidGamePhaseRule(Phases.BUILD),
-                new ValidPlayerRule(playerName),
                 new ValidPlayerBuildIndexRule(playerName, buildIndex),
                 new ValidMapPositionRule(x, y, sizeX, sizeY)
         ));

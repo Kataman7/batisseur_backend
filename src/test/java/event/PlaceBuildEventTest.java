@@ -18,7 +18,7 @@ public class PlaceBuildEventTest
     public void setUp()
     {
         board = new Board();
-        new JoinBoardEvent("Player1").apply(board);
+        new JoinBoardEvent("Player1", "token1").apply(board);
         Player player = board.getPlayers().getByName("Player1");
         player.getBuilds().add(new Build("maison", 10, 20, new int[]{}, 1, 1, true));
         board.setPhase(Phases.BUILD);
@@ -27,7 +27,7 @@ public class PlaceBuildEventTest
     @Test
     public void shouldPlaceBuildOnMap()
     {
-        new PlaceBuildEvent("Player1", 0, 0, 0, 1, 1).apply(board);
+        new PlaceBuildEvent("Player1", "token1", 0, 0, 0, 1, 1).apply(board);
         assertNotNull(board.getGameMap().getCell(0, 0).build);
     }
 }

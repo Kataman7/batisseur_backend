@@ -19,34 +19,34 @@ public class PassToNextPlayerEventTest
     public void setUp()
     {
         board = new Board();
-        (new JoinBoardEvent("bob")).apply(board);
-        (new JoinBoardEvent("alice")).apply(board);
-        (new StartGameEvent("bob")).apply(board);
+        (new JoinBoardEvent("bob", "token1")).apply(board);
+        (new JoinBoardEvent("alice", "token2")).apply(board);
+        (new StartGameEvent("bob", "token1")).apply(board);
     }
     @Test
     public void shouldPassTurnToNextPlayer()
     {
-        (new PassToNextPlayerEvent("bob", Phases.BUY_BUILDERS.ordinal())).apply(board);
+        (new PassToNextPlayerEvent("bob", "token1", Phases.BUY_BUILDERS.ordinal())).apply(board);
         assertEquals("alice", board.getPlayers().getCurrent().getName());
     }
     @Test
     public void shouldAdvancePhaseWhenAllPlayersHavePlayed()
     {
-        (new PassToNextPlayerEvent("bob", Phases.BUY_BUILDERS.ordinal())).apply(board);
-        (new PassToNextPlayerEvent("alice", Phases.BUY_BUILDERS.ordinal())).apply(board);
+        (new PassToNextPlayerEvent("bob", "token1", Phases.BUY_BUILDERS.ordinal())).apply(board);
+        (new PassToNextPlayerEvent("alice", "token2", Phases.BUY_BUILDERS.ordinal())).apply(board);
         assertEquals(Phases.BUY_BUILDS, board.getPhase());
     }
     @Test
     public void shouldNotAdvancePhaseWhenNotAllPlayersHavePlayed()
     {
-        (new PassToNextPlayerEvent("bob", Phases.BUY_BUILDERS.ordinal())).apply(board);
+        (new PassToNextPlayerEvent("bob", "token1", Phases.BUY_BUILDERS.ordinal())).apply(board);
         assertEquals(Phases.BUY_BUILDERS, board.getPhase());
     }
     @Test
     public void shouldReturnToFirstPlayerAfterAllPlayersHavePlayed()
     {
-        (new PassToNextPlayerEvent("bob", Phases.BUY_BUILDERS.ordinal())).apply(board);
-        (new PassToNextPlayerEvent("alice", Phases.BUY_BUILDERS.ordinal())).apply(board);
+        (new PassToNextPlayerEvent("bob", "token1", Phases.BUY_BUILDERS.ordinal())).apply(board);
+        (new PassToNextPlayerEvent("alice", "token2", Phases.BUY_BUILDERS.ordinal())).apply(board);
         assertEquals("bob", board.getPlayers().getCurrent().getName());
     }
 

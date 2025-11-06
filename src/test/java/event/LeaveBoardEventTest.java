@@ -17,14 +17,14 @@ public class LeaveBoardEventTest
     public void setUp()
     {
         board = new Board();
-        new JoinBoardEvent("Player1").apply(board);
-        new JoinBoardEvent("Player2").apply(board);
+        new JoinBoardEvent("Player1", "token1").apply(board);
+        new JoinBoardEvent("Player2", "token2").apply(board);
     }
 
     @Test
     public void shouldRemovePlayerFromBoard()
     {
-        new LeaveBoardEvent("Player2").apply(board);
+        new LeaveBoardEvent("Player2", "token2").apply(board);
         assertEquals(1, board.getPlayers().size());
         assertFalse(board.getPlayers().contains(new Player("Player2")));
     }
@@ -32,14 +32,14 @@ public class LeaveBoardEventTest
     @Test
     public void shouldChangeAdminWhenAdminLeaves()
     {
-        new LeaveBoardEvent("Player1").apply(board);
+        new LeaveBoardEvent("Player1", "token1").apply(board);
         assertEquals("Player2", board.getAdminPlayerName());
     }
 
     @Test
     public void shouldNotChangeAdminWhenNonAdminLeaves()
     {
-        new LeaveBoardEvent("Player2").apply(board);
+        new LeaveBoardEvent("Player2", "token2").apply(board);
         assertEquals("Player1", board.getAdminPlayerName());
     }
 }

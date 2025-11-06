@@ -17,16 +17,15 @@ public class PassToNextPlayerEvent extends PlayerEvent
     public static final String NAME = "PassToNextPlayerEvent";
 
     private final Phases phase;
-    public PassToNextPlayerEvent(String playerName, int gamePhase)
+    public PassToNextPlayerEvent(String playerName, String playerToken, int gamePhase)
     {
-        super(playerName);
+        super(playerName, playerToken);
         this.phase = Phases.values()[gamePhase];
 
         super.getRules().addAll(List.of(
                 new ValidGamePhaseRule(phase),
                 new NotRule(new ValidGamePhaseRule(Phases.BUILD)),
                 new NotRule(new ValidGamePhaseRule(Phases.LOBBY)),
-                new ValidPlayerRule(playerName),
                 new IsPlayerTurnRule(playerName)
         ));
     }

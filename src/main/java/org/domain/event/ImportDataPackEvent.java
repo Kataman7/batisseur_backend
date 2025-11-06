@@ -18,15 +18,14 @@ public class ImportDataPackEvent extends PlayerEvent
     private final String[][] buildsData;
     private final String[][] buildersData;
 
-    public ImportDataPackEvent(String playerName, String[][] buildsData, String[][] buildersData)
+    public ImportDataPackEvent(String playerName, String playerToken, String[][] buildsData, String[][] buildersData)
     {
-        super(playerName);
+        super(playerName, playerToken);
         this.buildsData = buildsData;
         this.buildersData = buildersData;
 
         super.getRules().addAll(List.of(
                 new ValidGamePhaseRule(Phases.LOBBY),
-                new ValidPlayerRule(playerName),
                 new IsPlayerAdminRule(getPlayerName()),
                 new ValidBuildersDataRule(buildersData),
                 new ValidBuildsDataRule(buildsData)

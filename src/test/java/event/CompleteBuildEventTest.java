@@ -21,19 +21,19 @@ public class CompleteBuildEventTest
     public void setUp()
     {
         board = new Board();
-        new JoinBoardEvent("Player1").apply(board);
+        new JoinBoardEvent("Player1", "token1").apply(board);
         Player player = board.getPlayers().getByName("Player1");
         player.getBuilds().add(new Build("maison", 10, 20, new int[]{1, 2, 3, 4, 5}, 1, 1, true));
         player.getBuilders().add(new Builder("ouvrier", 1, new int[]{1, 2, 3, 4, 5}));
         board.setPhase(Phases.BUILD);
-        new AssignBuilderToBuildEvent("Player1", 0, 0).apply(board);
+        new AssignBuilderToBuildEvent("Player1", "token1", 0, 0).apply(board);
     }
 
     @Test
     public void shouldCompleteBuildAndRewardPlayer()
     {
         int initialMoney = board.getPlayers().getByName("Player1").getMoney();
-        new CompleteBuildEvent("Player1", 0).apply(board);
+        new CompleteBuildEvent("Player1", "token1", 0).apply(board);
         Player player = board.getPlayers().getByName("Player1");
         assertEquals(initialMoney + 10, player.getMoney());
         assertEquals(0, player.getBuilds().get(0).getReward());

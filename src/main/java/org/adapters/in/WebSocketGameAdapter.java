@@ -38,7 +38,7 @@ public class WebSocketGameAdapter extends WebSocketServer {
         String playerName = connectedPlayers.remove(conn);
         broadcaster.removeConnection(conn);
         if (playerName != null) {
-            handler.handle(new LeaveBoardEvent(playerName));
+            handler.handle(new LeaveBoardEvent(playerName, System.getenv("GAME_SECRET_ADMIN_TOKEN")));
         }
     }
 
@@ -83,23 +83,24 @@ public class WebSocketGameAdapter extends WebSocketServer {
         }
 
         switch (eventType) {
-            //{"event": "addMessage", "playerName": "Alice", "messageContent": "Hello everyone!"}
+            //{"event": "addMessage", "playerName": "Alice", "messageContent": "Hello everyone!", "playerToken": "tok123"}
             case AddMessageEvent.NAME: {
                 String playerName = jsonObject.getString("playerName", "");
                 String messageContent = jsonObject.getString("messageContent", "");
-                return new AddMessageEvent(playerName, messageContent);
+                String playerToken = jsonObject.getString("playerToken", "");
+                return new AddMessageEvent(playerName, messageContent, playerToken);
             }
             case JoinBoardEvent.NAME: {
                 String playerName = jsonObject.getString("playerName", "");
-                // Ajoute d'autres paramètres optionnels ici si besoin
+                String playerToken = jsonObject.getString("playerToken", "");
                 connectedPlayers.put(conn, playerName);
-                return new JoinBoardEvent(playerName);
+                return new JoinBoardEvent(playerName, playerToken);
             }
             case LeaveBoardEvent.NAME: {
                 String playerName = jsonObject.getString("playerName", "");
-                // Ajoute d'autres paramètres optionnels ici si besoin
+                String playerToken = jsonObject.getString("playerToken", "");
                 connectedPlayers.remove(conn);
-                return new LeaveBoardEvent(playerName);
+                return new LeaveBoardEvent(playerName, playerToken);
             }
             case CreateServerEvent.NAME: {
                 // Paramètres optionnels pour createServer si besoin

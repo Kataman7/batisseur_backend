@@ -13,8 +13,8 @@ public class Main {
     public static void main(String[] args) {
         // Création du modèle de jeu
         Board game = new Board();
-        (new JoinBoardEvent("Alice")).apply(game);
-        (new JoinBoardEvent("Bob")).apply(game);
+        (new JoinBoardEvent("Alice", System.getenv("GAME_SECRET_ADMIN_TOKEN"))).apply(game);
+        (new JoinBoardEvent("Bob", System.getenv("GAME_SECRET_ADMIN_TOKEN"))).apply(game);
 
         // Adaptateurs sortants
         GameStateSaver saver = new ConsoleGameSaver();         // Affiche l'état après chaque action

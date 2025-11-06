@@ -21,7 +21,7 @@ public class JoinBoardEventTest
     @Test
     public void shouldAddPlayerToBoard()
     {
-        new JoinBoardEvent("Player1").apply(board);
+        new JoinBoardEvent("Player1", "token1").apply(board);
         assertEquals(1, board.getPlayers().size());
         assertTrue(board.getPlayers().contains(new Player("Player1")));
     }
@@ -29,15 +29,15 @@ public class JoinBoardEventTest
     @Test
     public void shouldSetAdminWhenFirstPlayerJoins()
     {
-        new JoinBoardEvent("Player1").apply(board);
+        new JoinBoardEvent("Player1", "token1").apply(board);
         assertEquals("Player1", board.getAdminPlayerName());
     }
 
     @Test
     public void shouldNotChangeAdminWhenNotFirstPlayer()
     {
-        new JoinBoardEvent("Player1").apply(board);
-        new JoinBoardEvent("Player2").apply(board);
+        new JoinBoardEvent("Player1", "token1").apply(board);
+        new JoinBoardEvent("Player2", "token2").apply(board);
         assertEquals("Player1", board.getAdminPlayerName());
     }
 }

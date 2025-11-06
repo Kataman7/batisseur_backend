@@ -4,8 +4,6 @@ import org.domain.model.Board;
 import org.domain.model.Chat;
 import org.domain.model.Message;
 import org.domain.rule.ValidMessageLengthRule;
-import org.domain.rule.ValidPlayerRule;
-
 import javax.json.Json;
 import javax.json.JsonObject;
 import java.util.List;
@@ -16,14 +14,13 @@ public class AddMessageEvent extends PlayerEvent
 
     private final Message message;
 
-    public AddMessageEvent(String playerName, String messageContent)
+    public AddMessageEvent(String playerName, String playerToken, String messageContent)
     {
-        super(playerName);
+        super(playerName, playerToken);
         this.message = new Message(playerName, messageContent);
 
         super.getRules().addAll(List.of(
-                new ValidMessageLengthRule(messageContent),
-                new ValidPlayerRule(getPlayerName())
+                new ValidMessageLengthRule(messageContent)
         ));
     }
     @Override

@@ -17,10 +17,13 @@ public class BuyBuilderEventTest
     public void setUp()
     {
         board = new Board();
-        new JoinBoardEvent("Player1").apply(board);
+        org.domain.model.Player player = new org.domain.model.Player("Player1");
+        board.getPlayers().add(player);
+        String token = player.getSecretToken();
+        new JoinBoardEvent("Player1", token).apply(board);
         board.getBuilders().add(new Builder("ouvrier", 1, new int[]{2, 3, 4, 5}));
         board.getBuilders().add(new Builder("apprenti", 0, new int[]{1, 2, 3, 4}));
-        new StartGameEvent("Player1").apply(board);
+        new StartGameEvent("Player1", token).apply(board);
         board.getPlayers().getByName("Player1").setMoney(10);
     }
 
@@ -29,7 +32,8 @@ public class BuyBuilderEventTest
     {
         int initialMoney = board.getPlayers().getByName("Player1").getMoney();
         int cost = board.getBuilders().get(0).getCost();
-        new BuyBuilderEvent("Player1", 0, cost).apply(board);
+        String token = board.getPlayers().getByName("Player1").getSecretToken();
+        new BuyBuilderEvent("Player1", token, 0, cost).apply(board);
         assertEquals(1, board.getPlayers().getByName("Player1").getBuilders().size());
         assertEquals(initialMoney - cost, board.getPlayers().getByName("Player1").getMoney());
     }

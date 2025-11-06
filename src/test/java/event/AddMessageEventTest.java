@@ -15,13 +15,13 @@ public class AddMessageEventTest
     public void setUp()
     {
         board = new Board();
-        new JoinBoardEvent("Player1").apply(board);
+        new JoinBoardEvent("Player1", "token1").apply(board);
     }
 
     @Test
     public void shouldAddMessageToChat()
     {
-        new AddMessageEvent("Player1", "Hello world").apply(board);
+        new AddMessageEvent("Player1", "token1", "Hello world").apply(board);
         assertEquals(1, board.getChat().getMessages().size());
         assertEquals("Player1", board.getChat().getMessages().get(0).getPlayerName());
         assertEquals("Hello world", board.getChat().getMessages().get(0).getContent());

@@ -2,7 +2,6 @@ package rule;
 
 import org.domain.event.JoinBoardEvent;
 import org.domain.model.Board;
-import org.domain.rule.IsBoardHasEnoughPlayersRule;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertFalse;

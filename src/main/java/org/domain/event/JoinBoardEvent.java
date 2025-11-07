@@ -1,11 +1,9 @@
 package org.domain.event;
 
-import org.domain.enums.Phases;
 import org.domain.model.Board;
 import org.domain.model.Player;
 import org.domain.rule.IsBoardFullRule;
 import org.domain.rule.NotRule;
-import org.domain.rule.ValidGamePhaseRule;
 
 import javax.json.Json;
 import javax.json.JsonObject;

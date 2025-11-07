@@ -3,19 +3,17 @@ package org.domain.rule;
 import org.domain.model.Board;
 import org.domain.model.Player;
 
-public class ValidPlayerBuildIndexRule extends AbstractPlayerRule
+public class IsPlayerHasAmmoRule extends AbstractPlayerRule
 {
-    private final int buildIndex;
 
-    public ValidPlayerBuildIndexRule(String playerName, int buildIndex) {
+    public IsPlayerHasAmmoRule(String playerName) {
         super(playerName);
-        this.buildIndex = buildIndex;
     }
 
     @Override
     public boolean isApplicable(Board board) {
         Player player = board.getPlayers().getByName(getPlayerName());
-        return buildIndex >= 0 && buildIndex < player.getBuilds().size();
+        return !player.getUnloadedBullets().isEmpty();
     }
 
     @Override

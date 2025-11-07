@@ -1,7 +1,6 @@
 package rule;
 
 import org.domain.event.JoinBoardEvent;
-import org.domain.event.StartGameEvent;
 import org.domain.model.Board;
 import org.domain.rule.IsPlayerTurnRule;
 import org.junit.jupiter.api.BeforeEach;

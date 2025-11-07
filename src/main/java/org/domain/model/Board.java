@@ -17,6 +17,7 @@ public class Board implements Model {
     private String adminPlayerName;
     private int betValue;
     private Player bettor;
+    private boolean gameOver;
 
     public Board()
     {

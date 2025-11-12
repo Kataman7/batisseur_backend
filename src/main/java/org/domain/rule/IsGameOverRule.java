@@ -2,7 +2,7 @@ package org.domain.rule;
 
 import org.domain.model.Board;
 
-public class isGameOverRule implements GameRule
+public class IsGameOverRule implements GameRule
 {
 
     @Override

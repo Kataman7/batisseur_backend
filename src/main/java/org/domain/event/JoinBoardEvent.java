@@ -3,6 +3,7 @@ package org.domain.event;
 import org.domain.model.Board;
 import org.domain.model.Player;
 import org.domain.rule.IsBoardFullRule;
+import org.domain.rule.IsGameOverRule;
 import org.domain.rule.NotRule;
 
 import javax.json.Json;
@@ -17,7 +18,7 @@ public class JoinBoardEvent extends PlayerEvent
     {
         super(playerName, playerToken);
         super.getRules().addAll(List.of(
-                new ValidGamePhaseRule(Phases.LOBBY),
+                new IsGameOverRule(),
                 new NotRule(new IsBoardFullRule())
         ));
     }

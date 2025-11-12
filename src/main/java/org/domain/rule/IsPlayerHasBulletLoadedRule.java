@@ -3,10 +3,10 @@ package org.domain.rule;
 import org.domain.model.Board;
 import org.domain.model.Player;
 
-public class IsPlayerHasAmmoRule extends AbstractPlayerRule
+public class IsPlayerHasBulletLoadedRule extends AbstractPlayerRule
 {
 
-    public IsPlayerHasAmmoRule(String playerName) {
+    public IsPlayerHasBulletLoadedRule(String playerName) {
         super(playerName);
     }
 

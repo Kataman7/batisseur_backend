@@ -2,11 +2,12 @@ package org.domain.model;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.domain.bullet.BlankBullet;
+import org.domain.bullet.Bullet;
+import org.domain.bullet.LethalBullet;
 
 import javax.json.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 @Getter
 @Setter
@@ -31,8 +32,8 @@ public class Player implements Model
         unloadedBullets = new ArrayList<>();
         loadedBullets = new ArrayList<>();
         for (int i = 0; i < 3; i++)
-            unloadedBullets.add(new Bullet(false));
-        unloadedBullets.add(new Bullet(true));
+            unloadedBullets.add(new BlankBullet());
+        unloadedBullets.add(new LethalBullet());
     }
 
     @Override
@@ -56,6 +57,10 @@ public class Player implements Model
         return Json.createObjectBuilder()
                 .add("name", name)
                 .add("score", score)
+                .add("skipping", skipping)
+                .add("dead", dead)
+                .add("loadedBulletsCount", loadedBullets.size())
+                .add("unloadedBulletsCount", unloadedBullets.size())
                 .build();
     }
 }

@@ -65,8 +65,9 @@ public class ServerService implements GameCommandHandler {
         try {
             // Création d'un nouveau jeu
             int port = createSession();
+            ((CreateServerEvent) event).setPort(String.valueOf(port));
             // Informer le client du nouveau port via le lobby
-            lobbyBroadcaster.broadcast("NEW_GAME:" + port);
+            lobbyBroadcaster.broadcast(event.toJson().toString());
         } catch (RuntimeException e) {
             lobbyBroadcaster.broadcast("ERREUR_CREATION_JEU:" + e.getMessage());
         }
